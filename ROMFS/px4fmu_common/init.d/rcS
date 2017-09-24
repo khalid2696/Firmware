@@ -34,6 +34,15 @@ set +e
 # UART8			/dev/ttyS6		CONSOLE
 
 #
+# Configuration defaults
+#
+# Increment this variable if the system default configuration
+# changes significantly. This will not wipe the param storage
+# but force setting the airframe parameters again.
+#
+set DEFAULTS_VER 1
+
+#
 # Mount the procfs.
 #
 mount -t procfs /proc
@@ -151,16 +160,16 @@ then
 		set AUTOCNF yes
 	else
 		set AUTOCNF no
+	fi
 
-		#
-		# Release 1.4.0 transitional support:
-		# set to old default if unconfigured.
-		# this preserves the previous behaviour
-		#
-		if param compare BAT_N_CELLS 0
-		then
-			param set BAT_N_CELLS 3
-		fi
+	#
+	# Allow overriding airframe defaults as we change them
+	#
+	if param compare SYS_PARAM_VER ${DEFAULTS_VER}
+	then
+		set NEW_DEFAULTS no
+	else
+		set NEW_DEFAULTS yes
 	fi
 
 	#
@@ -283,7 +292,7 @@ then
 	#
 	# If autoconfig parameter was set, reset it and save parameters
 	#
-	if [ $AUTOCNF == yes ]
+	if [ $AUTOCNF == yes -o $NEW_DEFAULTS == yes ]
 	then
 		# Disable safety switch by default on Pixracer
 		if ver hwcmp PX4FMU_V4
@@ -293,6 +302,14 @@ then
 		param set SYS_AUTOCONFIG 0
 	fi
 	unset AUTOCNF
+
+	if [ $NEW_DEFAULTS == yes ]
+	then
+		param set SYS_PARAM_VER ${DEFAULTS_VER}
+		param save
+		set NEW_DEFAULTS no
+		reboot
+	fi
 
 	set IO_PRESENT no
 

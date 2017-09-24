@@ -10,7 +10,7 @@
 
 sh /etc/init.d/rc.vtol_defaults
 
-if [ $AUTOCNF == yes ]
+if [ $AUTOCNF == yes -o $NEW_DEFAULTS == yes ]
 then
 	param set VT_TYPE 2
 	param set VT_MOT_COUNT 4

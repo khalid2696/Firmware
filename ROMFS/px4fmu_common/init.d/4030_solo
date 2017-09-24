@@ -16,7 +16,7 @@
 
 sh /etc/init.d/rc.mc_defaults
 
-if [ $AUTOCNF == yes ]
+if [ $AUTOCNF == yes -o $NEW_DEFAULTS == yes ]
 then
     # tuning
     param set MC_PITCHRATE_P    0.11

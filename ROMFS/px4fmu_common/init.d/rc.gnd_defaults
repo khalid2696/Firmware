@@ -2,7 +2,7 @@
 
 set VEHICLE_TYPE ugv
 
-if [ $AUTOCNF == yes ]
+if [ $AUTOCNF == yes -o $NEW_DEFAULTS == yes ]
 then
 #
 # Default parameters for UGVs

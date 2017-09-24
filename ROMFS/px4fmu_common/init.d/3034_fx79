@@ -10,7 +10,7 @@
 
 sh /etc/init.d/rc.fw_defaults
 
-if [ $AUTOCNF == yes ]
+if [ $AUTOCNF == yes -o $NEW_DEFAULTS == yes ]
 then
 	param set NAV_LOITER_RAD 150
 	param set FW_AIRSPD_MAX 30

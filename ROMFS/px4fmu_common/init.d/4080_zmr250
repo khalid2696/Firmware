@@ -15,7 +15,7 @@ sh /etc/init.d/rc.mc_defaults
 set MIXER zmr250
 set PWM_OUT 1234
 
-if [ $AUTOCNF == yes ]
+if [ $AUTOCNF == yes -o $NEW_DEFAULTS == yes ]
 then
 	param set MC_ROLL_P 2.0
 	param set MC_ROLLRATE_P 0.05

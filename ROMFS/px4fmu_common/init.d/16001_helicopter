@@ -23,7 +23,7 @@ set MIXER blade130
 
 #set PWM_OUT 1234
 
-if [ $AUTOCNF == yes ]
+if [ $AUTOCNF == yes -o $NEW_DEFAULTS == yes ]
 then
 	param set MC_ROLL_P 5.0
 	param set MC_ROLLRATE_P 0.0

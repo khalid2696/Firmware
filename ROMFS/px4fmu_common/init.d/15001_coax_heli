@@ -16,7 +16,7 @@
 sh /etc/init.d/rc.mc_defaults
 set MIXER coax
 
-if [ $AUTOCNF == yes ]
+if [ $AUTOCNF == yes -o $NEW_DEFAULTS == yes ]
 then
 	param set NAV_ACC_RAD 2.0
 	param set RTL_RETURN_ALT 30.0

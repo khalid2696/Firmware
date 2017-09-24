@@ -4,7 +4,7 @@ set VEHICLE_TYPE ugv
 
 # This section can be enabled once tuning parameters for this particular
 # rover model are known. It allows to configure default gains via the GUI
-if [ $AUTOCNF == yes ]
+if [ $AUTOCNF == yes -o $NEW_DEFAULTS == yes ]
 then
 	# PWM default value for "disarmed" mode
 	# this centers the steering and throttle, which means no motion
